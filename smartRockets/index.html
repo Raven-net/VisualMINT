@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>p5.js example</title>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <script src="../resources/p5/p5.js"></script>
+  <script src="quicksettings.js"></script>
+  <!-- <script src="../addons/p5.sound.min.js"></script> -->
+  <script src="sketch.js"></script>
+  <script src="rocket.js"></script>
+  <script src="population.js"></script>
+  <script src="DNA.js"></script>
+</head>
+
+<body>
+  <main>
+    <div class="canvasBox"></div>
+    <div class="declaration">
+      <h3>Smart Rockets</h3>
+      <p>
+        In diesem Programm werden Raketen mithilfe eines genetischen Algorithmus gelenkt, um ein Ziel zu erreichen.
+        Auf ihrem Weg zum Ziel müssen die Raketen ein Hindernis überwinden.
+      </p>
+      <p>
+        In jedem Durchgang macht sich eine Population mit 100 Raketen auf den Weg. Jeder Durchgang besteht aus 500
+        Bewegungsschritten, in denen die Raketen bewegt werden. Jede Rakete besitzt hierzu eine DNA, die 500
+        Beschleunigungswerte enthalten. Am Ende eines Durchgangs erhält jede Rakete einen Fitness-Wert, der vom
+        Abstand der Rakete zum Ziel abhängig ist. Der Fitness-wert wird abhängig vom Erreichen des Ziels oder der
+        Kollision mit einer Wand noch abgeändert. Nach jedem Durchgang wird dann eine neue Generation von 100
+        Raketen erstellt, wobei die neuen Raketen vermehrt DNA-Werte der fitteren Raketen der Vorgängergeneration
+        erben. Ebenso findet eine Mutation der DNA-Werte mit einem Mutationsgrad von 1% statt.
+      </p>
+    </div>
+  </main>
+</body>
+
+</html>

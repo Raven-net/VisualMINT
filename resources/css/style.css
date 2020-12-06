@@ -1,0 +1,131 @@
+* {
+  font-family: Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navigations Leiste */
+
+/* Add a black background color to the top navigation */
+.topnav {
+  position: fixed;
+  left: 0;
+  top: 80px;
+  width: 100%;
+  z-index: 1000;
+  background-color: #333;
+  overflow: hidden;
+  /* border: 1px solid #333; */
+  border-radius: 10px;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 10px 16px;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: CornflowerBlue;
+  color: white;
+}
+
+.blindheader {
+  height: 120px;
+}
+
+h1 {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  color: white;
+  text-align: center;
+  font-size: 60px;
+  font-family: Helvetica;
+  background-color: CornflowerBlue;
+  border: 1px solid CornflowerBlue;
+  border-radius: 10px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  padding-bottom: 36px;
+}
+
+p,
+li {
+  font-size: 18px;
+  margin: 5px;
+  padding: 5px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  max-width: 280px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 8px;
+
+  /* Position the tooltip */
+  position: absolute;
+  /* z-index: 1; */
+  top: 10%;
+  left: 10%;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.appnav a:hover {
+  opacity: 0.9;
+}
+
+.share {
+  border: 1px solid white;
+  padding: 20px 0px;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+.share a {
+  background: CornflowerBlue;
+  border: 1px solid CornflowerBlue;
+  border-radius: 3px;
+  color: white;
+  display: inline-block;
+  text-decoration: none;
+  padding: 10px 15px;
+  margin-left: 15px;
+  margin-right: 15px;}
+
+.share a:hover {
+  background: white;
+  border: 1px solid CornflowerBlue;
+  color: CornflowerBlue;
+}

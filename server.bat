@@ -1,0 +1,1 @@
+python -m http.server --bind 192.168.188.24 8000
