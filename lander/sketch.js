@@ -1,5 +1,6 @@
 let lander
 let lifes = 5;
+let fuel = 2000;
 let lostLife = false;
 let gameOver = false;
 let game = true;
@@ -14,12 +15,14 @@ function landing() {
         lander.pos.x = 400;
         lander.vel.set(0, 0);
         ground = new Ground(random(120, width - 120), random(300, height - 10));
+        fuel = 2000;
       } else if (lander.vel.mag() > 1) {
         lander.pos.y = 150;
         lander.pos.x = 400;
         lander.vel.set(0, 0);
         ground = new Ground(random(120, width - 120), random(300, height - 10));
         lostLife = true;
+        fuel = 2000;
       }
     }
   }
@@ -28,21 +31,39 @@ function landing() {
 function forces(item) {
   let gravity = createVector(0, 0.02);
   item.applyForce(gravity);
-  let wind = createVector((noise(windOffset) - 0.5) / 4, 0);
+  let wind = createVector((noise(windOffset) - 0.5) / 5, 0);
   windOffset += 0.005;
   item.applyForce(wind);
-  if (keyIsDown(LEFT_ARROW)) {
-    let shubL = createVector(-0.05, 0);
-    item.applyForce(shubL);
+  if (fuel >= 0) {
+    if (keyIsDown(LEFT_ARROW)) {
+      let shubL = createVector(-0.05, 0);
+      fuel -= 1;
+      if (keyIsDown(SHIFT)) {
+        shubL.mult(3);
+        fuel -= 2;
+      }
+      item.applyForce(shubL);
+    }
+    if (keyIsDown(RIGHT_ARROW)) {
+      let shubR = createVector(0.05, 0);
+      fuel -= 1;
+      if (keyIsDown(SHIFT)) {
+        shubR.mult(3);
+        fuel -= 2;
+      }
+      item.applyForce(shubR);
+    }
+    if (keyIsDown(UP_ARROW)) {
+      let shub = createVector(0, -0.1);
+      fuel -= 1;
+      if (keyIsDown(SHIFT)) {
+        shub.mult(3);
+        fuel -= 2;
+      }
+      item.applyForce(shub);
+    }
   }
-  if (keyIsDown(RIGHT_ARROW)) {
-    let shubR = createVector(0.05, 0);
-    item.applyForce(shubR);
-  }
-  if (keyIsDown(UP_ARROW)) {
-    let shub = createVector(0, -0.1);
-    item.applyForce(shub);
-  }
+
 }
 
 function setup() {

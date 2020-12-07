@@ -1,12 +1,6 @@
 class Ground {
   constructor(x, y) {
     this.pos = createVector(x, y);
-    this.r1 = random(300, 600);
-    this.r2 = random(300, 600);
-    this.r3 = random(300, 600);
-    this.r4 = random(300, 600);
-    this.r5 = random(300, 600);
-    this.r6 = random(300, 600);
     this.leftGround = [];
     this.rightGround = [];
 
@@ -14,7 +8,8 @@ class Ground {
     for (let i = 0; i < this.pos.x - 20; i++) {
       let xval = i;
       let yval = noise(xoff) * 300 + 300;
-      this.leftGround.push({x: xval, y: yval});
+      // this.leftGround.push({x: xval, y: yval});
+      this.leftGround.push(createVector(xval, yval));
       xoff = xoff + 0.005;
     }
     this.pos.y = noise(xoff) * 300 + 295;
@@ -22,7 +17,8 @@ class Ground {
       xoff = xoff + 0.005;
       let xval = this.pos.x + 20 + i;
       let yval = noise(xoff) * 300 + 300;
-      this.rightGround.push({x: xval, y: yval});
+      // this.rightGround.push({x: xval, y: yval});
+      this.rightGround.push(createVector(xval, yval));
     }
   }
   show() {
