@@ -6,8 +6,9 @@ class Lander {
     this.acc = createVector(0, 0);
   }
   show() {
-    fill(200);
+    fill(250);
     triangle(this.pos.x, this.pos.y, this.pos.x - 10, this.pos.y + 30, this.pos.x + 10, this.pos.y + 30);
+    stroke(255, 0, 0);
     if (keyIsDown(LEFT_ARROW)) {
       line(this.bottom.x + 5, this.bottom.y - 10, this.bottom.x + 25, this.bottom.y - 10);
       line(this.bottom.x + 5, this.bottom.y - 15, this.bottom.x + 20, this.bottom.y - 15);
@@ -23,11 +24,17 @@ class Lander {
       line(this.bottom.x + 5, this.bottom.y, this.bottom.x + 5, this.bottom.y + 15);
       line(this.bottom.x - 5, this.bottom.y, this.bottom.x - 5, this.bottom.y + 15);
     }
+    stroke(0);
   }
   values() {
     textSize(15);
-    fill(0);
+    if (this.vel.mag() > 1) {
+      fill(255, 0, 0)
+    } else {
+      fill(0, 255, 0)
+    }
     text(`Geschindigkeit: ${this.vel.mag().toFixed(2)}`, 600, 30);
+    fill(200);
     text(`Höhe: ${Math.round((ground.pos.y - this.bottom.y) * 100) / 100}`, 600, 50);
     text(`Leben: ${lifes}`, 600, 70);
   }
@@ -36,6 +43,7 @@ class Lander {
   }
   move() {
     this.vel.add(this.acc);
+    this.vel.limit(2);
     this.pos.add(this.vel);
     this.acc.set(0, 0);
     this.bottom.set(this.pos.x, this.pos.y + 30);
