@@ -1,7 +1,7 @@
 class Population {
-  constructor() {
+  constructor(size) {
     this.rockets = [];
-    this.popsize = 100;
+    this.popsize = size;
     this.matingpool = [];
 
     for (let i = 0; i <this.popsize; i++) {
@@ -10,7 +10,7 @@ class Population {
   }
 
   evaluate() {
-    let maxfit = 0;
+    maxfit = 0;
     for (let rocket of this.rockets) {
       rocket.calcFitness();
       if (rocket.fitness > maxfit) {
@@ -33,7 +33,7 @@ class Population {
 
   selection() {
     let newRockets = [];
-    for (let i = 0; i < this.rockets.length; i++) {
+    for (let i = 0; i < popsize; i++) {
       let parentA = random(this.matingpool).DNA;
       let parentB = random(this.matingpool).DNA;
       let child = parentA.crossover(parentB);
@@ -45,7 +45,9 @@ class Population {
 
   run() {
     for (let rocket of this.rockets) {
-      rocket.update();
+      if (!this.completed && !this.crashed) {
+        rocket.update();
+      }
       rocket.show();
     }
   }
