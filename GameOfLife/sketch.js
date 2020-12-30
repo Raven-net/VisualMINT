@@ -10,6 +10,7 @@ let grid;
 let cols;
 let rows;
 let resolution = 10;
+let run = false;
 
 function setup() {
   createCanvas(800, 600);
@@ -18,13 +19,24 @@ function setup() {
   grid = make2DArray(cols, rows);
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
-      grid[i][j] = floor(random(2));
+      // grid[i][j] = floor(random(2));
+      grid[i][j] = 0;
     }
   }
 }
 
 function draw() {
   background(255);
+
+  if (mouseIsPressed && mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
+    let x = floor(map(mouseX, 0, width, 0, width / resolution));
+    let y = floor(map(mouseY, 0, height, 0, height / resolution));
+    grid[x][y] = 1;
+  } else if (mouseIsPressed && keyIsPressed === true && mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
+    let x = floor(map(mouseX, 0, width, 0, width / resolution));
+    let y = floor(map(mouseY, 0, height, 0, height / resolution));
+    grid[x][y] = 0;
+  }
 
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
@@ -39,14 +51,11 @@ function draw() {
     }
   }
 
-  let next = make2DArray(cols, rows);
-
-  for (let i = 0; i < cols; i++) {
-    for (let j = 0; j < rows; j++) {
-      let state = grid[i][j];
-      if(i == 0 || i == cols - 1 || j == 0 || j == rows - 1) {
-        next[i][j] = state;
-      } else {
+  if (run) {
+    let next = make2DArray(cols, rows);
+    for (let i = 0; i < cols; i++) {
+      for (let j = 0; j < rows; j++) {
+        let state = grid[i][j];
         let sum = 0;
         let neighbors = countNeighbors(grid, i, j);
 
@@ -59,9 +68,15 @@ function draw() {
         }
       }
     }
+    grid = next;
+  } else {
+    textSize(40);
+    fill(0, 255, 0);
+    text('Pause', 50, 50);
+    textSize(20);
+    fill(0, 255, 0);
+    text('Press ENTER to Start', 50, 75);
   }
-
-  grid = next;
 }
 
 function countNeighbors(grid, x, y) {
@@ -69,12 +84,23 @@ function countNeighbors(grid, x, y) {
   for (let i = -1; i < 2; i++) {
     for (let j = -1; j < 2; j++) {
 
-      let col = (x + i) % cols;
-      let row = (y + j) % rows;
+      let col = (x + i + cols) % cols;
+      let row = (y + j + rows) % rows;
 
       sum += grid[col][row];
     }
   }
   sum -= grid[x][y];
   return sum;
+}
+
+function keyPressed() {
+  if (keyCode === ENTER) {
+    if (run == true) {
+      run = false;
+    } else {
+      run = true;
+    }
+  }
+  return false;
 }
