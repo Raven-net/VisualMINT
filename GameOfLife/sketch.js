@@ -14,6 +14,7 @@ let run = false;
 
 function setup() {
   createCanvas(800, 600);
+  frameRate(10);
   cols = width / resolution;
   rows = height / resolution;
   grid = make2DArray(cols, rows);
