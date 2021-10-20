@@ -5,7 +5,8 @@ let current;
 let stack = [];
 
 function setup() {
-  createCanvas(640, 640);
+  let canvas = createCanvas(640, 640);
+  canvas.position(0, 0);
   // frameRate(20);
   cols = floor(width / size);
   rows = floor(height / size);

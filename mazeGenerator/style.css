@@ -1,0 +1,24 @@
+* {
+  font-family: Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.canvasBox {
+  width: 800;
+  height: 600;
+}
+
+.declaration {
+  position: relative;
+  top: 640px;
+  margin: 30px 20px;
+  max-width: 760px;
+}
+
+.declaration p {
+  margin: 20px;
+  max-width: 760px;
+  text-align: justify;
+}
