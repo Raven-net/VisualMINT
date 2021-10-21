@@ -3,9 +3,12 @@ let bubble;
 let ship;
 
 function setup() {
-  createCanvas(800, 600);
-  bubbles.push(new Bubble(random(800), random(600), random(20, 50), 255));
-  ship = new Ship(400, 300);
+  cnv = createCanvas(windowWidth, windowHeight);
+  bubbles.push(new Bubble(random(width), random(height), random(20, 50), 255));
+  ship = new Ship(width / 2, height / 2);
+  buttonB = createButton('Bubble');
+  buttonB.position(30, 30);
+  buttonB.mousePressed(newBubble);
 }
 
 function draw() {
@@ -53,15 +56,43 @@ function draw() {
   ship.edges();
 }
 
-function mousePressed() {
-  bubble = new Bubble(mouseX, mouseY, random(20, 50), 255);
+// function mousePressed() {
+//   bubble = new Bubble(mouseX, mouseY, random(20, 50), 255);
+//   bubbles.push(bubble);
+// }
+
+// function keyTyped() {
+//   if (key === 'b') {
+//     bubble = new Bubble(random(width), random(height), random(20, 50), 255);
+//     bubbles.push(bubble);
+//   }
+//    return false;
+// }
+
+function newBubble(){
+  bubble = new Bubble(random(width), random(height), random(20, 50), 255);
   bubbles.push(bubble);
 }
 
-function keyTyped() {
-  if (key === 'b') {
-    bubble = new Bubble(random(800), random(600), random(20, 50), 255);
-    bubbles.push(bubble);
-  }
-   return false;
+function goLeft(){
+  ship.rotate('l');
+}
+
+function goRight(){
+  ship.rotate('r');
+}
+
+function power(){
+  let force = p5.Vector.mult(ship.dir, 0.05);
+  ship.applyForce(force);
+}
+
+function reverse(){
+  let force = p5.Vector.mult(ship.dir, -0.05);
+  ship.applyForce(force);
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  bubbles = [];
 }

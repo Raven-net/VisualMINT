@@ -128,17 +128,6 @@ function randomCells(){
   rand = true;
 }
 
-// function keyPressed() {
-//   if (keyCode === ENTER) {
-//     if (run == true) {
-//       run = false;
-//     } else {
-//       run = true;
-//     }
-//   }
-//   return false;
-// }
-
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   cols = floor(width / resolution);
