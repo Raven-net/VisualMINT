@@ -8,7 +8,6 @@ let slider1;
 let slider2;
 let slider3;
 let slider4;
-let slider5;
 let button;
 
 function onoffcircel() {
@@ -20,43 +19,38 @@ function onoffcircel() {
 }
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  createCanvas(800, 600);
   colorMode(HSB);
   slider1 = createSlider(-5, 5, 1);
-  slider1.position(100, 30);
+  slider1.position(100, 550);
   slider1.style('width', '80px');
   slider2 = createSlider(-5, 5, -1);
-  slider2.position(200, 30);
+  slider2.position(200, 550);
   slider2.style('width', '80px');
   slider3 = createSlider(-5, 5, 5);
-  slider3.position(300, 30);
+  slider3.position(300, 550);
   slider3.style('width', '80px');
   slider4 = createSlider(-5, 5, 3);
-  slider4.position(400, 30);
+  slider4.position(400, 550);
   slider4.style('width', '80px');
-  slider5 = createSlider(1, 5, 1);
-  slider5.position(20, 60);
-  slider5.style('width', '60px');
   button = createButton('circle');
-  button.position(30, 30);
+  button.position(19, 550);
   button.mousePressed(onoffcircel);
 
 }
 
 function draw() {
-  let ww = windowWidth;
-  let wh = windowHeight;
   let slinks = [
-    {phi: 0, r: wh / 6, omega: slider1.value()}, {phi: PI, r: wh / 12, omega: slider2.value()}, {phi: 0, r: wh / 24, omega: slider3.value()}, {phi: 0, r: wh / 48, omega: slider4.value()}, {phi: 0, r: wh / 96, omega: 24}, {phi: 0, r: wh / 192, omega: 12}
+    {phi: 0, r: 100, omega: slider1.value()}, {phi: PI, r: 30, omega: slider2.value()}, {phi: 0, r: 25, omega: slider3.value()}, {phi: 0, r: 12, omega: slider4.value()}, {phi: 0, r: 6, omega: 24}, {phi: 0, r: 3, omega: 12}
   ]
   background(0);
-  translate(ww / 2, wh / 2);
+  translate(400, 300);
 // Startpunkt im Koordinatenursprung Ursprung = 0 + 0*i
   let x = 0;
   let y = 0;
 
 // Iteration über die Anzahl der Fourierreihenglieder
-  for (let i = 0; i < slider5.value(); i++) {
+  for (let i = 0; i < map(mouseY, 0, 600, 1, 5); i++) {
   // for (let i = 0; i < slider.value(); i++) {
 
     // vorheriger Ort ist Ursprung des naechsten Reihengliedes
@@ -126,8 +120,4 @@ function draw() {
     imgX.pop();
     imgY.pop();
   }
-}
-
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
 }

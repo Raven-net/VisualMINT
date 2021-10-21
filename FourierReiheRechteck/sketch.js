@@ -62,7 +62,6 @@ function draw() {
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
-  sinus = [];
-  cosinus = [];
+  wave = [];
   angle = 0
 }
