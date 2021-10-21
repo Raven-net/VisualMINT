@@ -11,16 +11,24 @@ let cols;
 let rows;
 let resolution = 10;
 let run = false;
+let rand = false;
+let button;
+let button2;
 
 function setup() {
-  createCanvas(800, 600);
+  createCanvas(windowWidth, windowHeight);
+  button = createButton('Start/Stop');
+  button.position(20, 30);
+  button.mousePressed(StartStop);
+  button2 = createButton('Random');
+  button2.position(20, 60);
+  button2.mousePressed(randomCells);
   frameRate(10);
-  cols = width / resolution;
-  rows = height / resolution;
+  cols = floor(width / resolution);
+  rows = floor(height / resolution);
   grid = make2DArray(cols, rows);
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
-      // grid[i][j] = floor(random(2));
       grid[i][j] = 0;
     }
   }
@@ -37,6 +45,15 @@ function draw() {
     let x = floor(map(mouseX, 0, width, 0, width / resolution));
     let y = floor(map(mouseY, 0, height, 0, height / resolution));
     grid[x][y] = 0;
+  }
+
+  if (rand){
+    for (let i = 0; i < cols; i++) {
+      for (let j = 0; j < rows; j++) {
+        grid[i][j] = floor(random(2));
+      }
+    }
+    rand = false;
   }
 
   for (let i = 0; i < cols; i++) {
@@ -71,12 +88,16 @@ function draw() {
     }
     grid = next;
   } else {
+    fill(255);
+    stroke(0);
+    rect(100, 10, 270, 80);
+    noStroke();
     textSize(40);
-    fill(0, 255, 0);
-    text('Pause', 50, 50);
+    fill(255, 0, 0);
+    text('Game of Life', 120, 50);
     textSize(20);
-    fill(0, 255, 0);
-    text('Press ENTER to Start', 50, 75);
+    fill(255, 0, 0);
+    text('Setze aktive Zellen', 120, 75);
   }
 }
 
@@ -95,13 +116,37 @@ function countNeighbors(grid, x, y) {
   return sum;
 }
 
-function keyPressed() {
-  if (keyCode === ENTER) {
-    if (run == true) {
-      run = false;
-    } else {
-      run = true;
+function StartStop(){
+  if (run) {
+    run = false;
+  } else {
+    run = true;
+  }
+}
+
+function randomCells(){
+  rand = true;
+}
+
+// function keyPressed() {
+//   if (keyCode === ENTER) {
+//     if (run == true) {
+//       run = false;
+//     } else {
+//       run = true;
+//     }
+//   }
+//   return false;
+// }
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  cols = floor(width / resolution);
+  rows = floor(height / resolution);
+  grid = make2DArray(cols, rows);
+  for (let i = 0; i < cols; i++) {
+    for (let j = 0; j < rows; j++) {
+      grid[i][j] = 0;
     }
   }
-  return false;
 }
