@@ -59,3 +59,10 @@ function draw() {
     wave.pop();
   }
 }
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  sinus = [];
+  cosinus = [];
+  angle = 0
+}
