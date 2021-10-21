@@ -21,7 +21,7 @@ function setup() {
 // -> 1 == 625
 
 function draw() {
-  image(img, 0, 0);
+  // image(img, 0, 0);
   let green = color(0, 255, 0);
   stroke(255);
   translate(1398, 719);
@@ -37,5 +37,5 @@ function draw() {
   cy = map(mouseY, 0, height, -1.14856, 1.15176);
 
   text('x =' + cx, 20, 20);
-  text('y =' + cy, 20, 20);   
+  text('y =' + cy, 50, 20);
 }
