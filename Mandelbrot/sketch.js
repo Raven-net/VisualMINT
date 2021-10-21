@@ -21,21 +21,21 @@ function setup() {
 // -> 1 == 625
 
 function draw() {
-  // image(img, 0, 0);
+  image(img, 0, 0);
   let green = color(0, 255, 0);
   stroke(255);
   translate(1398, 719);
   line(-1398, 0, 1920 - 1398, 0);
   line(0, -719, 0, 721);
-  line(-170, -5, -170, 5);
+  line(-470, -5, -470, 5);
   line(156, -5, 156, 5);
   noStroke();
   fill(green);
-  ellipse(mouseX, mouseY, 8);
+  ellipse(mouseX - 1398, mouseY - 719, 8);
 
   cx = map(mouseX, 0, width, -2.23323, 0.83387);
   cy = map(mouseY, 0, height, -1.14856, 1.15176);
 
   text('x =' + cx, 20, 20);
-  text('y =' + cy, 50, 20);
+  text('y =' + cy, 20, 50);
 }
