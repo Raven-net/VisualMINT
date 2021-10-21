@@ -7,7 +7,6 @@ function preload(){
 function setup() {
   createCanvas(1920, 1440);
   image(img, 0, 0);
-  background(200);
 }
 
 // maping
