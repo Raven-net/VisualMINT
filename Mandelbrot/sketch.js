@@ -11,4 +11,8 @@ function setup() {
 
 function draw() {
   image(img, 0, 0);
+  stroke(255);
+  translate(width / 2, height / 2);
+  line(-width / 2, 0, width / 2, 0);
+  ellipse(0, 0, 5);
 }
