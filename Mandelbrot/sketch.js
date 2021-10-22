@@ -1,6 +1,7 @@
 let img;
-let cx;
-let cy;
+let x = 0;
+let y = 0;
+let slider;
 
 function preload(){
   img = loadImage('mandelbrot.jpg');
@@ -8,7 +9,10 @@ function preload(){
 
 function setup() {
   createCanvas(1920, 1440);
-  image(img, 0, 0);
+
+  slider = createSlider(1, 10, 3);
+  slider.position(20, 20);
+  slider.style('width', '200px');
 }
 
 // maping
@@ -31,11 +35,34 @@ function draw() {
   line(156, -5, 156, 5);
   noStroke();
   fill(green);
-  ellipse(mouseX - 1398, mouseY - 719, 8);
+  // ellipse(mouseX - 1398, mouseY - 719, 8);
+  ellipse(map(x, -2.23323, 0.83387, 0, width), map(y, -1.14856, 1.15176, 0, height), 5);
 
-  cx = map(mouseX, 0, width, -2.23323, 0.83387);
-  cy = map(mouseY, 0, height, -1.14856, 1.15176);
+  text('x =' + x, 20, 20);
+  text('y =' + y, 20, 50);
 
-  text('x =' + cx, 20, 20);
-  text('y =' + cy, 20, 50);
+  // Startpunkt im Koordinatenursprung Ursprung = 0 + 0*i
+  let cx = x;
+  let cy = y;
+
+  // Iteration über die Anzahl der Fourierreihenglieder
+  for (let i = 0; i < slider.value(); i++) {
+    // for (let i = 0; i < slider.value(); i++) {
+
+    // vorheriger Ort ist Ursprung des naechsten Reihengliedes
+    let prevx = cx;
+    let prevy = cy;
+    let n = i + 1;
+
+    cx = prevx * prevx - prevy * prevy;
+    cy = prevx * prevy + prevx * prevy;
+
+    fill(green);
+    ellipse(map(x, -2.23323, 0.83387, 0, width), map(y, -1.14856, 1.15176, 0, height), 5);
+  }
+}
+
+function mousePressed() {
+  x = map(mouseX, 0, width, -2.23323, 0.83387);
+  y = map(mouseY, 0, height, -1.14856, 1.15176);
 }
