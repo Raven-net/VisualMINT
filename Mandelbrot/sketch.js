@@ -10,7 +10,7 @@ function preload(){
 function setup() {
   createCanvas(1920, 1440);
 
-  slider = createSlider(1, 10, 3);
+  slider = createSlider(1, 20, 10);
   slider.position(20, 20);
   slider.style('width', '200px');
 }
@@ -25,8 +25,9 @@ function setup() {
 // -> 1 == 625
 
 function draw() {
+  let green = 255;
+  let blue = 0;
   image(img, 0, 0);
-  let green = color(0, 255, 0);
   stroke(255);
   translate(1398, 719);
   line(-1398, 0, 1920 - 1398, 0);
@@ -34,7 +35,7 @@ function draw() {
   line(-470, -5, -470, 5);
   line(156, -5, 156, 5);
   noStroke();
-  fill(green);
+  fill(0, green, 0);
   // ellipse(mouseX - 1398, mouseY - 719, 8);
   ellipse(map(x, -2.23323, 0.83387, 0, width) - 1398, map(y, -1.14856, 1.15176, 0, height) - 719, 5);
 
@@ -57,8 +58,15 @@ function draw() {
     cx = prevx * prevx - prevy * prevy + prevx;
     cy = prevx * prevy + prevx * prevy + prevy;
 
-    fill(green);
+    fill(0, green, blue);
     ellipse(map(cx, -2.23323, 0.83387, 0, width) - 1398, map(cy, -1.14856, 1.15176, 0, height) - 719, 5);
+
+    if (green > 20){
+      green -= 10;
+    }
+    if (blue < 230){
+      blue += 10;
+    }
   }
 }
 
