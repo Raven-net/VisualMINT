@@ -10,12 +10,12 @@ function preload(){
 function setup() {
   createCanvas(1920, 1440);
 
-  slider = createSlider(1, 20, 10);
+  slider = createSlider(1, 50, 10);
   slider.position(20, 20);
   slider.style('width', '200px');
 }
 
-// maping
+// maping Infos:
 // x: 0,25 == pixel 1554
 // x: -0,75 == pixel 928
 // x: 0 == pixel 1398
@@ -37,10 +37,7 @@ function draw() {
   noStroke();
   fill(0, green, 0);
   // ellipse(mouseX - 1398, mouseY - 719, 8);
-  ellipse(map(x, -2.23323, 0.83387, 0, width) - 1398, map(y, -1.14856, 1.15176, 0, height) - 719, 5);
-
-  text('x =' + x, 20, 20);
-  text('y =' + y, 20, 50);
+  ellipse(map(x, -2.23323, 0.83387, 0, width) - 1398, map(y, -1.14856, 1.15176, 0, height) - 719, 10);
 
   // Startpunkt im Koordinatenursprung Ursprung = 0 + 0*i
   let cx = x;
@@ -59,13 +56,13 @@ function draw() {
     cy = prevx * prevy + prevx * prevy + y;
 
     fill(0, green, blue);
-    ellipse(map(cx, -2.23323, 0.83387, 0, width) - 1398, map(cy, -1.14856, 1.15176, 0, height) - 719, 5);
+    ellipse(map(cx, -2.23323, 0.83387, 0, width) - 1398, map(cy, -1.14856, 1.15176, 0, height) - 719, 10);
 
-    if (green > 20){
-      green -= 10;
+    if (green > 10){
+      green -= 5;
     }
-    if (blue < 230){
-      blue += 10;
+    if (blue < 245){
+      blue += 5;
     }
   }
 }
