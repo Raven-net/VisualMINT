@@ -36,7 +36,7 @@ function draw() {
   noStroke();
   fill(green);
   // ellipse(mouseX - 1398, mouseY - 719, 8);
-  ellipse(map(x, -2.23323, 0.83387, 0, width), map(y, -1.14856, 1.15176, 0, height), 5);
+  ellipse(map(x, -2.23323, 0.83387, 0, width) - 1398, map(y, -1.14856, 1.15176, 0, height) - 719, 5);
 
   text('x =' + x, 20, 20);
   text('y =' + y, 20, 50);
@@ -58,7 +58,7 @@ function draw() {
     cy = prevx * prevy + prevx * prevy;
 
     fill(green);
-    ellipse(map(x, -2.23323, 0.83387, 0, width), map(y, -1.14856, 1.15176, 0, height), 5);
+    ellipse(map(x, -2.23323, 0.83387, 0, width) - 1398, map(y, -1.14856, 1.15176, 0, height) - 719, 5);
   }
 }
 
