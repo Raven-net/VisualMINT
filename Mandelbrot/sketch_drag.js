@@ -1,7 +1,6 @@
 let img;
 let x = 0;
 let y = 0;
-let slider;
 let c;
 
 function preload(){
@@ -12,10 +11,6 @@ function setup() {
   createCanvas(1920, 1440);
 
   c = new Startpoint(x, y, 10);
-
-  // slider = createSlider(1, 50, 10);
-  // slider.position(20, 20);
-  // slider.style('width', '200px');
 }
 
 // maping Infos:
@@ -37,13 +32,16 @@ function draw() {
   line(0, -719, 0, 721);
   line(-470, -5, -470, 5);
   line(156, -5, 156, 5);
-  noStroke();
-  fill(0, green, 0);
-  ellipse(map(x, -2.23323, 0.83387, 0, width) - 1398, map(y, -1.14856, 1.15176, 0, height) - 719, 10);
+
+  c.show(x,y);
+
+  // noStroke();
+  // fill(0, green, 0);
+  // ellipse(map(x, -2.23323, 0.83387, 0, width) - 1398, map(y, -1.14856, 1.15176, 0, height) - 719, 10);
 
   // Startpunkt im Koordinatenursprung Ursprung = 0 + 0*i
-  let cx = x;
-  let cy = y;
+  let cx = c.x;
+  let cy = c.y;
 
   // Iteration über die Anzahl der Fourierreihenglieder
   // for (let i = 0; i < slider.value(); i++) {
@@ -75,11 +73,11 @@ function draw() {
 // }
 
 function mousePressed() {
-  rectangle.pressed(mouseX, mouseY);
+  c.pressed(mouseX, mouseY);
 }
 
 function mouseReleased() {
-  rectangle.notPressed();
+  c.notPressed();
 }
 
 class Startpoint {
@@ -87,16 +85,14 @@ class Startpoint {
     this.x = x;
     this.y = y;
     this.r = r;
-    this.offsetX = 0;
-    this.offsetY = 0;
     this.dragging = false;
     this.rollover = false;
   }
 
   show(px, py) {
     if (this.dragging) {
-      this.x = px + this.offsetX;
-      this.y = py + this.offsetY;
+      this.x = map(px, 0, width, -2.23323, 0.83387);
+      this.y = map(py, 0, height, -1.14856, 1.15176);
     }
 
     noStroke();
@@ -105,10 +101,10 @@ class Startpoint {
   }
 
   pressed(px, py) {
-    if (px > this.x && px < this.x + this.w && py > this.y && py < this.y + this.h) {
+    if (px > this.x + this.r && px < this.x - this.r && py > this.y + this.r && py < this.y - this.r) {
       this.dragging = true;
-      this.offsetX = this.x - px;
-      this.offsetY = this.y - py;
+      this.x = map(px, 0, width, -2.23323, 0.83387);
+      this.y = map(py, 0, height, -1.14856, 1.15176);
     }
   }
 
