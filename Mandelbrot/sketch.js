@@ -55,8 +55,8 @@ function draw() {
     let prevy = cy;
     let n = i + 1;
 
-    cx = prevx * prevx - prevy * prevy + prevx;
-    cy = prevx * prevy + prevx * prevy + prevy;
+    cx = prevx * prevx - prevy * prevy + x;
+    cy = prevx * prevy + prevx * prevy + y;
 
     fill(0, green, blue);
     ellipse(map(cx, -2.23323, 0.83387, 0, width) - 1398, map(cy, -1.14856, 1.15176, 0, height) - 719, 5);
