@@ -44,8 +44,8 @@ function draw() {
   let cy = y;
 
   // Iteration über die Anzahl der Fourierreihenglieder
-  for (let i = 0; i < slider.value(); i++) {
-    // for (let i = 0; i < slider.value(); i++) {
+  // for (let i = 0; i < slider.value(); i++) {
+  for (let i = 0; i < 50; i++) {
 
     // vorheriger Ort ist Ursprung des naechsten Reihengliedes
     let prevx = cx;
