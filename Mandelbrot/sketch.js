@@ -10,9 +10,9 @@ function preload(){
 function setup() {
   createCanvas(1920, 1440);
 
-  slider = createSlider(1, 50, 10);
-  slider.position(20, 20);
-  slider.style('width', '200px');
+  // slider = createSlider(1, 50, 10);
+  // slider.position(20, 20);
+  // slider.style('width', '200px');
 }
 
 // maping Infos:
