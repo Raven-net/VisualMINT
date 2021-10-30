@@ -1,3 +1,6 @@
+let x_list = [];
+let y_list = [];
+
 function setup() {
   createCanvas(windowWidth, windowHeight);
 }
