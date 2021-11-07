@@ -9,19 +9,23 @@ var speed = 1;
 var delbutton;
 var gravbutton;
 var centerbutton;
-var grav = false;
-var center = true;
+var grav = true;
+var center = false;
+var vektor = false;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   if (width > height) {
-    scl = width / 50;
+    scl = width / 40;
   } else {
-    scl = height / 50;
+    scl = height / 40;
   }
   delbutton = createButton('Reset');
   delbutton.position(30, 60);
   delbutton.mousePressed(delParticles);
+  vekbutton = createButton('Kraft');
+  vekbutton.position(110, 60);
+  vekbutton.mousePressed(showVektor);
   centerbutton = createButton('Center');
   centerbutton.position(30, 30);
   centerbutton.mousePressed(centerF);
@@ -38,7 +42,9 @@ function setup() {
 
 function draw() {
   background(0);
-  flowField.show();
+  if (vektor) {
+    flowField.show();
+  }
   for(let i = 0; i < particles.length; i++){
     particles[i].follow(flowField.forcefield);
     particles[i].show();
@@ -71,4 +77,12 @@ function gravF() {
   center = false;
   flowField.forcefield = [];
   flowField.initField();
+}
+
+function showVektor() {
+  if (vektor) {
+    vektor = false;
+  } else {
+    vektor = true;
+  }
 }

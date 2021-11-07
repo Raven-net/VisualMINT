@@ -52,10 +52,10 @@ class Particle {
   }
 
   edges() {
-    if (this.pos.x > width - 20) this.life = false;
+    if (this.pos.x > width - width / 40) this.life = false;
     if (this.pos.x < 20) this.life = false;
     if (this.pos.y < 20) this.life = false;
-    if (this.pos.y > height - 30) this.life = false;
+    if (this.pos.y > height - 50) this.life = false;
 
     // if (this.pos.x > width - 20) this.pos.x = 20;
     // if (this.pos.x < 20) this.pos.x = width - 20;
