@@ -24,6 +24,13 @@ class Vectorfield {
     return v;
   }
 
+  sinField (x, y) {
+    let pos = createVector(x, y);
+    let center = createVector(this.cols / 2, this.rows / 2);
+    let v = createVector(y - this.rows / 2, -sin(1*x)).mult(0.1*speed);
+    return v;
+  }
+
   initField() {
     if (center) {
       for(var y = 0; y < this.rows; y++) {
