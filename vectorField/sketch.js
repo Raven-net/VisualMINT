@@ -1,5 +1,5 @@
 var inc = 0.1;
-var scl = 17;
+var scl;
 var cols;
 var rows;
 var zoff = 0;
@@ -7,16 +7,17 @@ var particles = [];
 var flowField;
 
 function setup() {
-  createCanvas(800, 600);
+  createCanvas(windowWidth, windowHeight);
+  scl = width / 50;
   flowField = new Vectorfield(scl);
   flowField.initField();
-  for (let i = 0; i < 100; i++){
-    particles[i] = new Particle(random(width - 20), random(height - 20));//start object
+  for (let i = 0; i < 2; i++){
+    particles[i] = new Particle(random(width - 20), random(height - 20));
   }
 }
 
 function draw() {
-  background(255);
+  background(0);
   flowField.show();
   //addParticles();
   for(let i = 0; i < particles.length; i++){
@@ -28,4 +29,9 @@ function draw() {
       particles.splice(i, 1);
     }
   }
+}
+
+function mousePressed() {
+  particle = new Particle(mouseX, mouseY);
+  particles.push(particle);
 }

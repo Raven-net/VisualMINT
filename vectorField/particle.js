@@ -18,9 +18,9 @@ class Particle {
   }
 
   show() {
-    strokeWeight(4);
-    stroke(2);
-    point(this.pos.x,this.pos.y);//let's make some points
+    stroke(0);
+    circle(this.pos.x,this.pos.y, 20);
+
   }
 
   edges() {

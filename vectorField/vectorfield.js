@@ -24,6 +24,7 @@ class Vectorfield {
       let forcefieldRow = [];
       for(var x = 0; x < this.cols; x++) {
         let v = this.centerField(x, y);
+        // let v = this.randomField(x, y);
         forcefieldRow.push(v);
       }
     this.forcefield.push(forcefieldRow);
@@ -51,12 +52,12 @@ class Vectorfield {
         // let dir = this.forcefield[i][j];
         // let base = createVector(i * width / this.size + 0.5 * width / this.size, j * height / this.size + 0.5 * height / this.size);
         // this.drawArrow(base, dir, 1);
-        stroke(map(this.forcefield[y][x].mag(), 0, 1, 0, 255), map(this.forcefield[y][x].mag(), 0, 1, 255, 0), 0);
+        stroke(map(this.forcefield[y][x].mag(), 0, 1, 255, 0), map(this.forcefield[y][x].mag(), 0, 1, 0, 255), 0);
         push();
         translate((x + 0.5) * scl, (y + 0.5) * scl);
         rotate(this.forcefield[y][x].heading());
         strokeWeight(1);
-        line(-scl / 2, 0, scl / 2, 0);
+        line(-scl / 2.5, 0, scl / 2.5, 0);
         pop();
       }
     }
