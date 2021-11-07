@@ -19,16 +19,41 @@ class Vectorfield {
     return v;
   }
 
+  gravField (x, y) {
+    let v = createVector(0, 0.1);
+    return v;
+  }
+
   initField() {
-    for(var y = 0; y < this.rows; y++) {
-      let forcefieldRow = [];
-      for(var x = 0; x < this.cols; x++) {
-        let v = this.centerField(x, y);
-        // let v = this.randomField(x, y);
-        forcefieldRow.push(v);
+    if (center) {
+      for(var y = 0; y < this.rows; y++) {
+        let forcefieldRow = [];
+        for(var x = 0; x < this.cols; x++) {
+          let v = this.centerField(x, y);
+          forcefieldRow.push(v);
+        }
+      this.forcefield.push(forcefieldRow);
       }
-    this.forcefield.push(forcefieldRow);
+    } else if (grav) {
+      for(var y = 0; y < this.rows; y++) {
+        let forcefieldRow = [];
+        for(var x = 0; x < this.cols; x++) {
+          let v = this.gravField(x, y);
+          forcefieldRow.push(v);
+        }
+      this.forcefield.push(forcefieldRow);
+      }
+    } else {
+      for(var y = 0; y < this.rows; y++) {
+        let forcefieldRow = [];
+        for(var x = 0; x < this.cols; x++) {
+          let v = this.randomField(x, y);
+          forcefieldRow.push(v);
+        }
+      this.forcefield.push(forcefieldRow);
+      }
     }
+
   }
 
   drawArrow(base, vec, length) {
@@ -56,7 +81,7 @@ class Vectorfield {
         push();
         translate((x + 0.5) * scl, (y + 0.5) * scl);
         rotate(this.forcefield[y][x].heading());
-        strokeWeight(1);
+        strokeWeight(2);
         line(-scl / 2.5, 0, scl / 2.5, 0);
         pop();
       }

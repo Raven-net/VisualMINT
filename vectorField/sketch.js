@@ -6,6 +6,11 @@ var zoff = 0;
 var particles = [];
 var flowField;
 var speed = 1;
+var delbutton;
+var gravbutton;
+var centerbutton;
+var grav = false;
+var center = true;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -14,9 +19,19 @@ function setup() {
   } else {
     scl = height / 50;
   }
+  delbutton = createButton('Reset');
+  delbutton.position(30, 60);
+  delbutton.mousePressed(delParticles);
+  centerbutton = createButton('Center');
+  centerbutton.position(30, 30);
+  centerbutton.mousePressed(centerF);
+  gravbutton = createButton('Grav');
+  gravbutton.position(110, 30);
+  gravbutton.mousePressed(gravF);
+
   flowField = new Vectorfield(scl);
   flowField.initField();
-  for (let i = 0; i < 2; i++){
+  for (let i = 0; i < 1; i++){
     particles[i] = new Particle(random(width - 20), random(height - 20));
   }
 }
@@ -38,4 +53,22 @@ function draw() {
 function mousePressed() {
   particle = new Particle(mouseX, mouseY);
   particles.push(particle);
+}
+
+function delParticles() {
+  particles = [];
+}
+
+function centerF() {
+  center = true;
+  grav = false;
+  flowField.forcefield = [];
+  flowField.initField();
+}
+
+function gravF() {
+  grav = true;
+  center = false;
+  flowField.forcefield = [];
+  flowField.initField();
 }
