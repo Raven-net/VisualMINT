@@ -1,3 +1,6 @@
+const xscale = 20,
+      yscale = 20;
+
 let x_list = [];
 let y_list = [];
 let riemann_on = false;
@@ -15,20 +18,25 @@ function draw() {
   background(0);
   translate(width / 2, height / 2);
   stroke(255);
-  // Koordinatensystem
-  line(-width / 2, 0, width / 2, 0);
-  line(0, -height / 2, 0, height / 2);
+  graphAxis();
+  graphFunc();
 
-  // Funktionsgraph
+}
+function graphFunc(){
   noFill();
+  push();
+  scale(1, -1);
   beginShape();
   for (i = -width / 2; i < width / 2; i++) {
-    vertex(i, -height * 0.3 + 0.002*(i)**2);
+    vertex(i, height * 0.3 - 0.002*(i)**2);
   }
   endShape();
+  pop();
+}
 
-  // Integrationsgrenzen
-
+function graphAxis() {
+  line(-width / 2, 0, width / 2, 0);
+  line(0, -height / 2, 0, height / 2);
 }
 
 function mousePressed() {
