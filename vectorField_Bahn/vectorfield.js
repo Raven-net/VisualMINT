@@ -15,7 +15,7 @@ class Vectorfield {
   centerField (x, y) {
     let pos = createVector(x, y);
     let center = createVector(this.cols / 2, this.rows / 2);
-    let v = p5.Vector.sub(center, pos).mult(0.01*speed);
+    let v = p5.Vector.sub(center, pos).mult(0.1);
     return v;
   }
 
@@ -52,7 +52,7 @@ class Vectorfield {
         // let dir = this.forcefield[i][j];
         // let base = createVector(i * width / this.size + 0.5 * width / this.size, j * height / this.size + 0.5 * height / this.size);
         // this.drawArrow(base, dir, 1);
-        stroke(map(this.forcefield[y][x].mag(), 0, 0.3, 255, 0), map(this.forcefield[y][x].mag(), 0, 0.3, 0, 255), 0);
+        stroke(map(this.forcefield[y][x].mag(), 0, 1, 255, 0), map(this.forcefield[y][x].mag(), 0, 1, 0, 255), 0);
         push();
         translate((x + 0.5) * scl, (y + 0.5) * scl);
         rotate(this.forcefield[y][x].heading());

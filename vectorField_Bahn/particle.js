@@ -1,7 +1,7 @@
 class Particle {
   constructor(x, y) {
     this.pos = createVector(x, y);
-    this.vel = createVector(random(0, 8 * speed), random(0, 8 * speed));
+    this.vel = createVector(random(0, 20), random(0, 20));
     this.acc = createVector(0, 0);
     this.life = true;
   }

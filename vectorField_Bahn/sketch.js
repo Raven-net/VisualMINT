@@ -5,7 +5,6 @@ var rows;
 var zoff = 0;
 var particles = [];
 var flowField;
-var speed = 1;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
