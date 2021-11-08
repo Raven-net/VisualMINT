@@ -57,8 +57,11 @@ function draw() {
 }
 
 function mousePressed() {
-  particle = new Particle(mouseX, mouseY);
-  particles.push(particle);
+  if (!(mouseX < 160 && mouseY < 90)) {
+    particle = new Particle(mouseX, mouseY);
+    particles.push(particle);
+  }
+
 }
 
 function delParticles() {
