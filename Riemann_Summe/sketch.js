@@ -13,9 +13,9 @@ let sliderN;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  sliderN = createSlider(1, 50, 1);
+  sliderN = createSlider(0, 50, 0);
   sliderN.position(100, 30);
-  sliderN.style('width', '150px');
+  sliderN.style('width', '300px');
   // button = createButton('Riemann');
   // button.position(40, 40);
   // button.mousePressed(riemannOnOff);
@@ -32,7 +32,14 @@ function draw() {
   stroke(255);
   graphAxis();
   graphFunc();
-  graphRiemann();
+  if (n > 0) {
+    graphRiemann();
+  }
+  a.show();
+  a.move();
+  b.show();
+  b.move();
+
 }
 
 function graphFunc() {
@@ -79,10 +86,12 @@ function graphAxis() {
 
 function mousePressed() {
   a.pressed(mouseX, mouseY);
+  b.pressed(mouseX, mouseY);
 }
 
 function mouseReleased() {
   a.notPressed();
+  b.notPressed();
 }
 
 // function riemannOnOff(){
@@ -100,21 +109,28 @@ class Point {
     this.dragging = false;
   }
 
-  newPoints() {
+  move() {
     if (this.dragging) {
-      this.x = map(mouseX, 0, width, -2.23323, 0.83387);
-      this.y = map(mouseY, 0, height, -1.14856, 1.15176);
+      this.x = map(mouseX, -width / 2, width / 2, -sclX / 2, sclX / 2);
     }
   }
 
-  pressed(px, py) {
-    // if (this.x < map(mouseX, 0, width, -2.23323, 0.83387) + 0.5 && this.x > map(mouseX, 0, width, -2.23323, 0.83387) - 0.5 && this.y < map(py, 0, height, -1.14856, 1.15176) + 0.5 && this.y < map(mouseY, 0, height, -1.14856, 1.15176) - 0.5) {
-    //   this.dragging = true;
-    // }
-    this.dragging = true;
+  show() {
+    push();
+    strokeWeight(2);
+    stroke(255);
+    circle(map(this.x, -sclX / 2, sclX / 2, -width / 2, width / 2), 0, 5);
+    pop();
   }
 
-  notPressed(px, py) {
+  pressed(x, y) {
+    if (this.x < map(x, -width / 2, width / 2, -sclX / 2, sclX / 2) + 0.2 && this.x > map(x, -width / 2, width / 2, -sclX / 2, sclX / 2) - 0.2 && this.y < map(y, -height / 2, height / 2, -sclY / 2, sclY / 2) + 0.2 && this.y < map(y, -height / 2, height / 2, -sclY / 2, sclY / 2) - 0.2) {
+      this.dragging = true;
+    }
+    // this.dragging = true;
+  }
+
+  notPressed() {
     this.dragging = false;
   }
 }
