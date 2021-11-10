@@ -10,12 +10,19 @@ let riemann_on = false;
 let a, b;
 let n;
 let sliderN;
+let input;
+let funk = '-0.3 * x ** 2 + 4';
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  input = createInput();
+  input.position(30, 30);
+  button = createButton('submit');
+  button.position(input.x + input.width, 30);
+  button.mousePressed(defFunk);
   sliderN = createSlider(0, 50, 0);
-  sliderN.position(100, 30);
-  sliderN.style('width', '300px');
+  sliderN.position(30, 60);
+  sliderN.style('width', '200px');
   // button = createButton('Riemann');
   // button.position(40, 40);
   // button.mousePressed(riemannOnOff);
@@ -51,7 +58,7 @@ function graphFunc() {
   beginShape();
   for (i = -width / 2; i < width / 2; i++) {
     let x = map(i, -width / 2, width / 2, -sclX / 2, sclX / 2);
-    let y = -0.3 * x ** 2 + 4;
+    let y = funk1(x);
     vertex(i, map(y, -sclY / 2, sclY / 2, -height / 2, height / 2));
   }
   endShape();
@@ -67,7 +74,7 @@ function graphRiemann() {
   strokeWeight(2);
   stroke(0, 255, 255);
   for (i = 0; i < n; i++) {
-    let y = -0.3 * x ** 2 + 4;
+    let y = funk1(x);
     rect(x * distX, 0, map(dist / n, -sclX / 2, sclX / 2, -width / 2, width / 2), map(y, -sclY / 2, sclY / 2, -height / 2, height / 2));
     x += dist / n;
   }
@@ -82,6 +89,15 @@ function graphAxis() {
   for (i = -sclY; i < sclY; i++) {
     line(-4, i * distY, 4, i * distY);
   }
+}
+
+function funk1(x) {
+  return eval(funk);
+}
+
+function defFunk() {
+  // funk = input.value().replace(/^/gi, "**");
+  funk = input.value();
 }
 
 function mousePressed() {
@@ -111,7 +127,7 @@ class Point {
 
   move() {
     if (this.dragging) {
-      this.x = map(mouseX, -width / 2, width / 2, -sclX / 2, sclX / 2);
+      this.x = map(mouseX, 0, width, -sclX / 2, sclX / 2);
     }
   }
 
@@ -124,7 +140,7 @@ class Point {
   }
 
   pressed(x, y) {
-    if (this.x < map(x, -width / 2, width / 2, -sclX / 2, sclX / 2) + 0.2 && this.x > map(x, -width / 2, width / 2, -sclX / 2, sclX / 2) - 0.2 && this.y < map(y, -height / 2, height / 2, -sclY / 2, sclY / 2) + 0.2 && this.y < map(y, -height / 2, height / 2, -sclY / 2, sclY / 2) - 0.2) {
+    if (this.x < map(x, 0, width, -sclX / 2, sclX / 2) + 0.2 && this.x > map(x, 0, width, -sclX / 2, sclX / 2) - 0.2 && this.y < map(y, -height / 2, height / 2, -sclY / 2, sclY / 2) + 0.2 && this.y < map(y, -height / 2, height / 2, -sclY / 2, sclY / 2) - 0.2) {
       this.dragging = true;
     }
     // this.dragging = true;
