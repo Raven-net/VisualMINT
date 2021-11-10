@@ -3,26 +3,31 @@ const sclX = 10,
 
 let distX;
 let distY;
-let x_list = [];
-let y_list = [];
 let riemann_on = false;
 // let button;
 let a, b;
 let n;
 let sliderN;
 let input;
+let sel;
+let area = 0;
 let funk = '-0.3 * x ** 2 + 4';
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   input = createInput();
   input.position(30, 30);
-  button = createButton('submit');
+  button = createButton('Funktion');
   button.position(input.x + input.width, 30);
   button.mousePressed(defFunk);
-  sliderN = createSlider(0, 50, 0);
+  sliderN = createSlider(0, 60, 0);
   sliderN.position(30, 60);
   sliderN.style('width', '200px');
+  sel = createSelect();
+  sel.position(30, 90);
+  sel.option('Links');
+  sel.option('Rechts');
+  sel.selected('Links');
   // button = createButton('Riemann');
   // button.position(40, 40);
   // button.mousePressed(riemannOnOff);
@@ -35,6 +40,10 @@ function setup() {
 function draw() {
   n = sliderN.value();
   background(0);
+  textSize(22);
+  fill(0, 102, 153);
+  stroke(0);
+  text('Fläche = ' + area, 50, 140);
   translate(width / 2, height / 2);
   stroke(255);
   graphAxis();
@@ -53,8 +62,8 @@ function graphFunc() {
   push();
   noFill();
   scale(1, -1);
-  strokeWeight(2);
-  stroke(0, 255, 255);
+  strokeWeight(3);
+  stroke(255, 103, 2);
   beginShape();
   for (i = -width / 2; i < width / 2; i++) {
     let x = map(i, -width / 2, width / 2, -sclX / 2, sclX / 2);
@@ -68,19 +77,27 @@ function graphFunc() {
 function graphRiemann() {
   let dist = b.x - a.x;
   let x = a.x;
+  area = 0;
   push();
-  fill(0, 255, 255, 100);
+  fill(0, 102, 153, 100);
   scale(1, -1);
   strokeWeight(2);
-  stroke(0, 255, 255);
+  stroke(0, 102, 153);
   for (i = 0; i < n; i++) {
     let y = funk1(x);
-    rect(x * distX, 0, map(dist / n, -sclX / 2, sclX / 2, -width / 2, width / 2), map(y, -sclY / 2, sclY / 2, -height / 2, height / 2));
+    if (sel.value() == 'Links') {
+      rect(x * distX, 0, map(dist / n, -sclX / 2, sclX / 2, -width / 2, width / 2), map(y, -sclY / 2, sclY / 2, -height / 2, height / 2));
+      area += dist / n * y;
+    } else if (sel.value() == 'Rechts') {
+      rect(x * distX, 0, map(dist / n, -sclX / 2, sclX / 2, -width / 2, width / 2), map(funk1(x + dist / n), -sclY / 2, sclY / 2, -height / 2, height / 2));
+      area += dist / n * funk1(x + dist / n);
+    }
     x += dist / n;
   }
 }
 
 function graphAxis() {
+  strokeWeight(1);
   line(-width / 2, 0, width / 2, 0);
   line(0, -height / 2, 0, height / 2);
   for (i = -sclX; i < sclX; i++) {
@@ -135,7 +152,8 @@ class Point {
     push();
     strokeWeight(2);
     stroke(255);
-    circle(map(this.x, -sclX / 2, sclX / 2, -width / 2, width / 2), 0, 5);
+    fill (255);
+    circle(map(this.x, -sclX / 2, sclX / 2, -width / 2, width / 2), 0, 8);
     pop();
   }
 
