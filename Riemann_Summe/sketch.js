@@ -15,7 +15,7 @@ let funk = '-0.3 * x ** 2 + 4';
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  input = createInput();
+  input = createInput('-0.3 * x ** 2 + 4');
   input.position(30, 30);
   button = createButton('Funktion');
   button.position(input.x + input.width, 30);
