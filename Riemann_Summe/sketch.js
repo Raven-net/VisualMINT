@@ -24,7 +24,7 @@ function setup() {
   sliderN.position(30, 60);
   sliderN.style('width', '200px');
   sel = createSelect();
-  sel.position(30, 90);
+  sel.position(input.x + input.width + button.width + 10, 30);
   sel.option('Links');
   sel.option('Rechts');
   sel.selected('Links');
@@ -43,7 +43,7 @@ function draw() {
   textSize(22);
   fill(0, 102, 153);
   stroke(0);
-  text('Fläche = ' + area, 50, 140);
+  text('Fläche = ' + area, 50, height - 100);
   translate(width / 2, height / 2);
   stroke(255);
   graphAxis();
