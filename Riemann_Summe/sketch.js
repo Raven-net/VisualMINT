@@ -120,11 +120,23 @@ function defFunk() {
 function mousePressed() {
   a.pressed(mouseX, mouseY);
   b.pressed(mouseX, mouseY);
+  if (mouseX > 0 && mouseX < 10 && mouseY > 0 && mouseY < 10) {
+    let fs = fullscreen();
+    fullscreen(!fs);
+  }
 }
 
 function mouseReleased() {
   a.notPressed();
   b.notPressed();
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  distX = width / sclX;
+  distY = height / sclY;
+  a = new Point(- width / 4, 0);
+  b = new Point(width / 4, 0);
 }
 
 // function riemannOnOff(){
