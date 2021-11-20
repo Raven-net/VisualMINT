@@ -8,7 +8,8 @@ let mouseOverSun = false;
 
 
 function setup() {
-  let canvas = createCanvas(windowWidth, windowHeight - 156);
+// Fenstergroeße - header und footer
+  let canvas = createCanvas(windowWidth, windowHeight - 156 - 82);
   canvas.parent("myp5");
 // Create  Mover(x, y, red, green, blue, mass)
   mover1 = new Mover(4 * width / 10, 4 * height / 10, 100, 149, 237, 2);
