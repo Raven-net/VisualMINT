@@ -57,7 +57,11 @@ class Planet {
       translate(this.planets[i].v.x, this.planets[i].v.y, this.planets[i].v.z);
       noStroke();
       fill(255);
+      // Planetenringe
       // ellipse(0, 0, this.radius * 2, this.radius * 2);
+      if(this.distance==0) {
+        pointLight(255, 255, 255, 0, 0, 0);
+      }
       this.planets[i].show();
       pop();
     }

@@ -19,7 +19,7 @@ function preload() {
 }
 
 function setup() {
-  let canvas = createCanvas(800, 600, WEBGL);
+  let canvas = createCanvas(windowWidth, windowHeight, WEBGL);
   // camera = createCamera();
   // setCamera(camera);
   canvas.elt.oncontextmenu = () => false;
@@ -31,10 +31,16 @@ function setup() {
 function draw() {
   background(0);
   // lights();
-  ambientLight(255, 255, 255);
-  pointLight(255, 255, 255, 0, 0, 0);
+  // ambientLight(55, 55, 55);
+  // pointLight(255, 255, 255, 0, 0, 0);
+  // int z = 75;
+  // pointLight(255, 255, 255, -50, -50, z);
+  // pointLight(255, 255, 255, 50, -50, z);
+  // pointLight(255, 255, 255, 50, 50, z);
+  // pointLight(255, 255, 255, -50, 50, z);
+
   // camera.lookAt(0, 0, 0);
-  // camera.setPosition(sin(frameCount / 60) * 200 + 300, cos(frameCount / 60) * 200 + 300, 200);
+  // cam.setPosition(sin(frameCount / 60) * 200 + 300, cos(frameCount / 60) * 200 + 300, 200);
   sun.show();
   sun.orbit();
 }

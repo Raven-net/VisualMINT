@@ -19,7 +19,7 @@ function preload() {
 }
 
 function setup() {
-  let canvas = createCanvas(800, 600, WEBGL);
+  let canvas = createCanvas(windowWidth, windowHeight, WEBGL);
   // camera = createCamera();
   // setCamera(camera);
   canvas.elt.oncontextmenu = () => false;
